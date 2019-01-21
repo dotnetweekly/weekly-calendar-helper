@@ -1,0 +1,16 @@
+{
+  "name": "weekly-calendar-helper",
+  "version": "0.0.1",
+  "description": "Helper Calendar Functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "prepublish": "npm run test"
+  },
+  "author": "Bill Stavroulakis <bstavroulakis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}

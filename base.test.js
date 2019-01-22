@@ -12,37 +12,31 @@ test("getDayName gets day name", () => {
   expect(baseFuncs.getDayName(6)).toBe("Sunday");
 });
 
-test("getUtcNow gets utc now time", () => {
-  expect(baseFuncs.getUtcNow().toISOString()).toMatch(
-    /\d+-([0-1][0-2])-([0-3][0-9])T([0-2][0-9]):([0-5][0-9]):([0-5][0-9])\.\d+Z/
-  );
-});
-
 test("getDates returns the correct range of dates", () => {
   const startDate = new Date("2019-01-21T12:08:11");
   const toDate = new Date("2019-01-25T12:08:11");
-  expect(baseFuncs.getDates(startDate, toDate)).toEqual([
-    new Date("2019-01-21T20:08:11.000Z"),
-    new Date("2019-01-22T20:08:11.000Z"),
-    new Date("2019-01-23T20:08:11.000Z"),
-    new Date("2019-01-24T20:08:11.000Z"),
-    new Date("2019-01-25T20:08:11.000Z")
-  ]);
+  const dates = baseFuncs.getDates(startDate, toDate);
+  expect(dates[0].getDate()).toEqual(21);
+  expect(dates[1].getDate()).toEqual(22);
+  expect(dates[2].getDate()).toEqual(23);
+  expect(dates[3].getDate()).toEqual(24);
+  expect(dates[4].getDate()).toEqual(25);
 });
 
 test("getFebruaryDays returns 28 or 29 depending leap year", () => {
-  const leapYear = new Date("2020-02-21T20:08:11.000Z");
-  const nonLeapYear = new Date("2019-02-21T20:08:11.000Z");
+  const leapYear = new Date("2020-02-21T00:00:00");
+  const nonLeapYear = new Date("2019-02-21T00:00:00");
   expect(baseFuncs.getFebruaryDays(leapYear)).toEqual(29);
   expect(baseFuncs.getFebruaryDays(nonLeapYear)).toEqual(28);
 });
 
 test("addDays adds/subtracts days correctly", () => {
-  const date = new Date("2020-02-21T20:08:11.000Z");
-  expect(baseFuncs.addDays(date, -1)).toEqual(
-    new Date("2020-02-20T20:08:11.000Z")
-  );
-  expect(baseFuncs.addDays(date, 20)).toEqual(
-    new Date("2020-03-12T19:08:11.000Z")
-  );
+  const date = new Date("2020-02-21T00:00:00");
+  const dateAdd1 = baseFuncs.addDays(date, -1, true);
+  const dateAdd2 = baseFuncs.addDays(date, 20, true);
+  const date2 = new Date("2020-01-27T00:00:00");
+  const dateAdd3 = baseFuncs.addDays(date2, -1, true);
+  expect(dateAdd1.getDate()).toEqual(20);
+  expect(dateAdd2.getDate()).toEqual(12);
+  expect(dateAdd3.getDate()).toEqual(26);
 });

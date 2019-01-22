@@ -1,11 +1,20 @@
 const weekFuncs = require("./week");
 
 test("getWeekNumber returns correct value", () => {
-  expect(weekFuncs.getWeekNumber(new Date("2020-02-20T20:08:11.000Z"))).toEqual(
-    [2020, 8]
+  expect(weekFuncs.getWeekNumber(new Date("2019-01-06T00:00:00.000Z"))).toEqual(
+    2
   );
-  expect(weekFuncs.getWeekNumber(new Date("2020-12-31T20:08:11.000Z"))).toEqual(
-    [2020, 53]
+  expect(
+    weekFuncs.getWeekNumber(new Date("2020-02-20T08:00:00.000Z"), true)
+  ).toEqual(8);
+  expect(weekFuncs.getWeekNumber(new Date("2020-12-31T08:00:00.000Z"))).toEqual(
+    53
+  );
+  expect(weekFuncs.getWeekNumber(new Date("2019-12-31T08:00:00.000Z"))).toEqual(
+    1
+  );
+  expect(weekFuncs.getWeekNumber(new Date("2018-12-31T08:00:00.000Z"))).toEqual(
+    1
   );
 });
 
@@ -34,4 +43,5 @@ test("getDateRangeOfWeek returns correct value", () => {
 test("weeksInYear returns correct value", () => {
   expect(weekFuncs.weeksInYear(2020)).toEqual(53);
   expect(weekFuncs.weeksInYear(2019)).toEqual(52);
+  expect(weekFuncs.weeksInYear(2018)).toEqual(52);
 });

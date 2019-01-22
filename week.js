@@ -1,6 +1,6 @@
 const base = require("./base");
 function getWeekNumber(d, log = false) {
-  let target = new Date(+d);
+  let target = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
   target = base.addDays(target, 4 - target.getDay());
 
   let firstThursday = new Date(target.getFullYear(), 0, 1);

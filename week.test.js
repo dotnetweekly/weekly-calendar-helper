@@ -16,6 +16,9 @@ test("getWeekNumber returns correct value", () => {
   expect(weekFuncs.getWeekNumber(new Date("2018-12-31T08:00:00.000Z"))).toEqual(
     1
   );
+  expect(weekFuncs.getWeekNumber(new Date("2019-01-22T12:50:39.577Z"))).toEqual(
+    4
+  );
 });
 
 // 0 is January, 1 is February

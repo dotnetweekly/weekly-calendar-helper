@@ -8,6 +8,18 @@ const getDayName = function(number) {
 const resetUTC = function(date) {
   return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDay()));
 };
+const getUtcNow = function() {
+  const now = new Date(Date.now());
+  return new Date(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+    now.getUTCHours(),
+    now.getUTCMinutes(),
+    now.getUTCSeconds(),
+    now.getUTCMilliseconds()
+  );
+};
 const getDates = function(startDate, stopDate) {
   let dateArray = [];
   let currentDate = startDate;
@@ -44,5 +56,6 @@ module.exports = {
   getDates,
   getFebruaryDays,
   addDays,
-  resetUTC
+  resetUTC,
+  getUtcNow
 };

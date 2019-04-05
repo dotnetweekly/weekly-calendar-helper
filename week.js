@@ -10,7 +10,7 @@ function getWeekNumber(d, log = false) {
 const getMonthFromWeek = function(week, year) {
   let date = new Date(year, 0, 1);
   date.setHours(0, 0, 0, -1);
-  date.setDate(date.getDate() + week * 7);
+  date.setDate(date.getDate() + week * 7 - 1);
   return date.getMonth();
 };
 const getDateRangeOfWeek = function(week, year) {
